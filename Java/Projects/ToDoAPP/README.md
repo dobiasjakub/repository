@@ -27,16 +27,16 @@ Command Line Todo application
 
 
 Command line arguments:
-    -l   Lists all uncheck tasks
-    -la  Lists all the tasks
-    -a   Adds a new task
-    -r   Removes an task
-    -c   Completes an task
+-    -l   Lists all uncheck tasks
+-    -la  Lists all the tasks
+-    -a   Adds a new task
+-    -r   Removes an task
+-    -c   Completes an task
 
 #### Commands
-"{java Main.java} -l" will show all the unchecked tasks
-"{java Main.java} -la" will show all tasks
-"{java Main.java} -a 'Your task'" will save a task into csv
-"{java Main.java} -r {index of task}" will delete task on setted index
-"{java Main.java} -c {index of task}" will check the task
+- "{java Main.java} -l" will show all the unchecked tasks
+- "{java Main.java} -la" will show all tasks
+- "{java Main.java} -a 'Your task'" will save a task into csv
+- "{java Main.java} -r {index of task}" will delete task on setted index
+- "{java Main.java} -c {index of task}" will check the task
 
