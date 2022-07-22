@@ -6,7 +6,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-
 import static java.nio.charset.StandardCharsets.UTF_8;
 
 public class ToDo {
@@ -23,6 +22,7 @@ public class ToDo {
             }
         }
     }
+
     public void addTask(List<String> list, String task) {
         list.add("[ ] " + task);
         System.out.println("Added");

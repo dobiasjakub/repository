@@ -9,22 +9,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
-
 import static java.nio.charset.StandardCharsets.UTF_8;
-
 import com.dobiasjakub.ToDo;
 
-
 public class Main {
-
     public static void main(String[] args)  {
 
         ToDo toDo = new ToDo();
-
         String path = "com/dobiasjakub/database.txt";
-
         List<String> tasks = toDo.readFile(path);
-
 
         String head ="\nCommand Line Todo application\n"
                      + "=============================\n";
