@@ -1,0 +1,53 @@
+name: Build and test
+
+on: 
+  push:
+    branches: 
+      - development
+  pull_request:
+    branches: 
+      - development
+
+env:
+  HotmailSmtpUsername: ${{ secrets.HOTMAIL_SMTPUSERNAME }}
+  HotmailSmtpPassword: ${{ secrets.HOTMAIL_SMTPPASSWORD }}
+  MailtrapSmtpUsername: ${{ secrets.MAILTRAP_SMTPUSERNAME }}
+  MailtrapSmtpPassword: ${{ secrets.MAILTRAP_SMTPPASSWORD }}
+  JwtSigningKey: ${{ secrets.JWT_SIGNINGKEY }}
+
+jobs:
+  build_and_test:
+    runs-on: windows-latest
+
+    steps:
+        # Checkout branche
+        - name: Checkout
+          uses: actions/checkout@v3.0.2
+
+        # Use lastest .NET Core SDK for build
+        - name: Setup .NET Core SDK
+          uses: actions/setup-dotnet@v2.1.0
+          with:
+            dotnet-version: 6.0.x
+        
+        # Restore dependencies in the solution
+        - name: Restore dependencies
+          run: dotnet restore
+
+        # Setup NuGet to get packages
+        - name: Setup NuGet
+          uses: NuGet/setup-nuget@v1.0.6
+          with:
+            nuget-version: latest
+
+        # Restore NuGet packages if present
+        - name: Restore NuGet packages
+          run: nuget restore #./Eucyon-BookIt/Eucyon-BookIt.sln
+        
+        # Build project
+        - name: Build project
+          run: dotnet build --no-restore #./Eucyon-BookIt/Eucyon-BookIt.sln
+        
+        # Execute all tests in the solution
+        - name: Execute tests
+          run: dotnet test --no-build --verbosity minimal #./HotelManagementTestingProject/
