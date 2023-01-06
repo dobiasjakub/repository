@@ -1,9 +1,9 @@
 package com.jddev.springeshop.persistance.entity;
 
 import com.jddev.springeshop.persistance.enums.Role;
-import jakarta.persistence.*;
 import lombok.Data;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Data

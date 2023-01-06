@@ -1,13 +1,12 @@
 package com.jddev.springeshop.persistance.entity;
 
 import com.jddev.springeshop.persistance.enums.DeviceType;
-import com.jddev.springeshop.persistance.enums.Role;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Set;
+
 
 @Data
 @Entity

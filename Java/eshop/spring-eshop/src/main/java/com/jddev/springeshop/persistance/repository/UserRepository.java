@@ -13,7 +13,7 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long>  {
 
-    User findByUsername(String username);
+    Optional<User> findByUsername(String username);
 
     @Query("update User set role = :role where username = :username")
     void updateUserRole(@Param("username") String username, @Param("role") Role role);

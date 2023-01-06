@@ -1,7 +1,6 @@
 package com.jddev.springeshop.persistance.entity;
 
-import com.jddev.springeshop.persistance.enums.DeviceType;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
