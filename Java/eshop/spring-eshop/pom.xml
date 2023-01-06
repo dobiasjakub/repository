@@ -8,12 +8,11 @@
         <version>2.6.1</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.sha</groupId>
-    <artifactId>spring-boot-product-seller</artifactId>
+    <groupId>com.jddev</groupId>
+    <artifactId>spring-eshop</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>spring-boot-product-seller</name>
-    <description>Demo project for Spring Boot</description>
-    <properties>
+    <name>spring-eshop</name>
+    <description>spring-eshop</description><properties>
         <java.version>11</java.version>
     </properties>
     <dependencies>
