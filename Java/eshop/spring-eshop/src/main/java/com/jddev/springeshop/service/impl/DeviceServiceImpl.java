@@ -1,7 +1,8 @@
-package com.jddev.springeshop.service;
+package com.jddev.springeshop.service.impl;
 
 import com.jddev.springeshop.persistance.entity.Device;
 import com.jddev.springeshop.persistance.repository.DeviceRepository;
+import com.jddev.springeshop.service.DeviceService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;

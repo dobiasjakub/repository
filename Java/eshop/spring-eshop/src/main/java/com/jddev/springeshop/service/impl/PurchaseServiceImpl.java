@@ -1,8 +1,9 @@
-package com.jddev.springeshop.service;
+package com.jddev.springeshop.service.impl;
 
 import com.jddev.springeshop.persistance.entity.Purchase;
 import com.jddev.springeshop.persistance.repository.PurchaseItem;
 import com.jddev.springeshop.persistance.repository.PurchaseRepository;
+import com.jddev.springeshop.service.PurchaseService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;

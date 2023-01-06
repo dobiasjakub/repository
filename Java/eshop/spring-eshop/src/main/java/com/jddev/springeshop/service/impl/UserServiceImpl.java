@@ -1,8 +1,9 @@
-package com.jddev.springeshop.service;
+package com.jddev.springeshop.service.impl;
 
 import com.jddev.springeshop.persistance.entity.User;
 import com.jddev.springeshop.persistance.enums.Role;
 import com.jddev.springeshop.persistance.repository.UserRepository;
+import com.jddev.springeshop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

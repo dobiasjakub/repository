@@ -27,11 +27,13 @@ public class User {
     @Column(name = "CREATED", nullable = false, length = 100)
     private LocalDateTime created;
 
-    @Column(name = "MODIFIED", nullable = false, length = 100)
+    @Column(name = "MODIFIED", length = 100)
     private LocalDateTime modified;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "ROLE", nullable = false, length = 100)
     private Role role;
 
+    @Transient
+    private String token;
 }
