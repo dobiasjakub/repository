@@ -9,8 +9,8 @@ public class SecurityUtils
 {
     public static final String ROLE_PREFIX = "ROLE_";
     public static final String AUTH_HEADER = "authorization";
-    public static final String AUTH_TOKEN_TYPE = "Bearer";
-    public static final String AUTH_TOKEN_PREFIX = AUTH_TOKEN_TYPE + " ";
+    public static final String AUTH_TOKEN_TYPE = "Bearer"; // JWT Token type
+    public static final String AUTH_TOKEN_PREFIX = AUTH_TOKEN_TYPE + " "; // JWT Token prefix
 
     public static SimpleGrantedAuthority convertToAuthority(String role)
     {
@@ -19,14 +19,14 @@ public class SecurityUtils
         return new SimpleGrantedAuthority(formattedRole);
     }
 
-    public static String extractAuthTokenFromRequest(HttpServletRequest request)
-    {
+    public static String extractAuthTokenFromRequest(HttpServletRequest request) {
+        // extraction of token
         String bearerToken = request.getHeader(AUTH_HEADER);
 
-        if (StringUtils.hasLength(bearerToken) && bearerToken.startsWith(AUTH_TOKEN_PREFIX))
-        {
+        if (StringUtils.hasLength(bearerToken) && bearerToken.startsWith(AUTH_TOKEN_PREFIX)) {
             return bearerToken.substring(7);
         }
+
         return null;
     }
 }
