@@ -38,11 +38,6 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @OneToMany(mappedBy = "user",
-            fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
-    @JsonManagedReference
-    private List<Account> accounts;
 
     @OneToMany(mappedBy = "user",
             fetch = FetchType.LAZY,

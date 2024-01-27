@@ -1,6 +1,5 @@
 package com.dobiasdev.spa.converters;
 
-import com.dobiasdev.spa.model.dtos.AccountDto;
 import com.dobiasdev.spa.persistance.entities.User;
 import com.dobiasdev.spa.model.dtos.UserDto;
 
@@ -24,8 +23,6 @@ public class UserConverter extends ConverterBase implements EntityConverter<User
         read("User.email", f -> dto.setEmail(entity.getEmail()), context);
         read("User.created", f -> dto.setCreated(entity.getCreated()), context);
         read("User.modified", f -> dto.setModified(entity.getModified()), context);
-
-        navigation("User.accounts", n -> dto.setAccounts(entity.getAccounts().stream().map(a -> converterManager.account().convertToDto(a, n, context)).toArray(AccountDto[]::new)), navigation, context);
 
         return dto;
     }

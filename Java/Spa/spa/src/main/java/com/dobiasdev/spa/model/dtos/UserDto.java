@@ -26,8 +26,6 @@ public class UserDto {
     private LocalDateTime created;
 
     private LocalDateTime modified;
-
-    private AccountDto[] accounts;
-
+    
     private TripDto[] trips;
 }

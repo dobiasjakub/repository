@@ -1,8 +1,6 @@
 package com.dobiasdev.spa.converters;
 
-import com.dobiasdev.spa.model.dtos.TransactionDto;
 import com.dobiasdev.spa.model.dtos.TripSegmentDto;
-import com.dobiasdev.spa.persistance.entities.Transaction;
 import com.dobiasdev.spa.persistance.entities.TripSegment;
 
 import java.text.ParseException;
