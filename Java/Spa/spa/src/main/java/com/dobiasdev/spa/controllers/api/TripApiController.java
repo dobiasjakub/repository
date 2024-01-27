@@ -31,11 +31,8 @@ public class TripApiController {
     @GetMapping("")
     public List<TripDto> getTrips()
     {
-        System.out.println("TripController");
         var trips = tripRepository.findAll();
         var navigation = NavigationFields.create(new String[]{"user.id", "tripSegments"});
-        System.out.println(trips.get(0).getTripSegments().size());
-        System.out.println(trips.size());
 
         var a = trips.stream().map(t -> converterManager.trip().convertToDto(t, navigation, new ConvertingContext())).collect(Collectors.toList());
         System.out.println(a);
