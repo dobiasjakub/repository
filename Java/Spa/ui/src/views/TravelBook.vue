@@ -36,18 +36,16 @@
                         <tr>
                           <th class="sorting" rowspan="1" colspan="1">Datum odjezdu</th>
                           <th class="sorting" rowspan="1" colspan="1">Datum příjezdu</th>
-                          <th class="sorting sorting_asc" rowspan="1" colspan="1">Počáteční destinace</th>
-                          <th class="sorting" rowspan="1" colspan="1">Cílová destinace</th>
+                          <th class="sorting sorting_asc" rowspan="1" colspan="1">Trasa</th>
                           <th class="sorting" rowspan="1" colspan="1">Km</th>
                           <th class="sorting" rowspan="1" colspan="1">Délka cesty</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr v-for="trip in tripsList" class="odd">
-                          <td class="dtr-control" tabindex="0"> {{ getTripStart(trip) }} </td>
-                          <td class="sorting_1"> {{ getTripEnd(trip) }} </td>
-                          <td> {{ getStartDestination(trip) }} </td>
-                          <td> {{ getEndDestination(trip) }} </td>
+                          <td> {{ getTripStart(trip) }} </td>
+                          <td> {{ getTripEnd(trip) }} </td>
+                          <td> {{ getTripRoute(trip) }} </td>
                           <td> {{ getTripDistance(trip) }} </td>
                           <td> {{ getTripLength(trip) }} </td>
                         </tr>
@@ -55,10 +53,10 @@
                         <tfoot>
                         <tr>
                           <th rowspan="1" colspan="1">Celkem</th>
-                          <th rowspan="1" colspan="1">Browser</th>
-                          <th rowspan="1" colspan="1">Platform(s)</th>
-                          <th rowspan="1" colspan="1">Engine version</th>
-                          <th rowspan="1" colspan="1" style="display: none;">CSS grade</th>
+                          <th rowspan="1" colspan="1"></th>
+                          <th rowspan="1" colspan="1"></th>
+                          <th rowspan="1" colspan="1"></th>
+                          <th rowspan="1" colspan="1" style="display: none;"></th>
                         </tr>
                         </tfoot>
                       </table>
@@ -72,7 +70,6 @@
       </div>
 
      <div v-if="openCreateTripModal"  class="modal-dialog" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1000; width: 30em">
-
       <div class="modal-content">
           <div class="modal-header">
             <h4 class="modal-title">Vytvořit novou cestu</h4>
@@ -83,8 +80,8 @@
           <div class="modal-body">
 
             <div v-for="(segment, index) in newTrip.tripSegments" :key="index">
-             <span>{{ segment.startDestination }} - {{ segment.endDestination }} </span>
-              <button type="button" class="btn btn-danger" @click="removeTripSegment(index)"> - </button>
+             <span>{{ segment.startDestination }} - {{ segment.endDestination }}</span>
+              <button type="button" class="btn btn-sm btn-danger" style="margin-left: 10px;" @click="removeTripSegment(index)"> - </button>
             </div>
             <button type="button" class="btn btn-primary" @click="createTripSegment"> + </button>
             <div>
@@ -177,7 +174,7 @@ export default {
       return this.$store.state.auth.user;
     },
     tripsList() {
-      return this.$store.state.trips.trips.data;
+      return this.$store.state.trips.tripsList;
     }
   },
   methods: {
@@ -192,7 +189,7 @@ export default {
         id: null,
         startDestination: '',
         endDestination: '',
-        distance: 0,
+        distance: null,
         tripStart: null,
         tripEnd: '',
         travelType: '',
@@ -220,13 +217,17 @@ export default {
     },
 
     getTripStart(trip) {
-      return moment(trip.tripSegments[0].startDate).format("D.M.yyyy")
+      return moment(trip.tripSegments[0].tripStart).format("D.M.yyyy")
     },
     getTripEnd(trip) {
-      return trip.tripSegments.length > 0 ? moment(trip.tripSegments[trip.tripSegments.length - 1].tripStart).format("D.M.yyyy") : null
+      return trip.tripSegments.length > 0 ? moment(trip.tripSegments[trip.tripSegments.length - 1].tripEnd).format("D.M.yyyy") : null
     },
-    getStartDestination(trip) {
-      return trip.tripSegments[0].startDestination;
+    getTripRoute(trip) {
+      let tripRoute = trip.tripSegments[0].startDestination;
+      for (let i = 0; i < trip.tripSegments.length; i++){
+        tripRoute += " -> " + trip.tripSegments[i].endDestination;
+      }
+      return tripRoute;
     },
     getEndDestination(trip) {
       return trip.tripSegments.length > 0 ? trip.tripSegments[trip.tripSegments.length - 1].endDestination : null
@@ -236,7 +237,7 @@ export default {
       return trip.tripSegments.map(s => s.distance).reduce((a, b) => a + b, 0);
     },
     getTripLength(trip) {
-      let timeSum = trip.tripSegments.reduce((a, b) => a + (moment(b.tripStart) - moment(b.tripEnd)), 0);
+      let timeSum = trip.tripSegments.reduce((a, b) => a + (moment(b.tripEnd) - moment(b.tripStart)), 0);
 
       let seconds = timeSum / 1000;
       let minutes = Math.floor(seconds / 60);

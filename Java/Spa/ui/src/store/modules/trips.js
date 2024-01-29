@@ -3,18 +3,18 @@ import client from "../../../http.common";
 export default {
     namespaced: true,
     state: {
-        trips: null
+        tripsList: []
     },
     mutations: {
         setTrips(state, trips) {
-           state.trips = trips;
+           state.tripsList = trips;
         }
     },
     actions: {
         async fetchTrips({ commit }) {
             try {
                 await client.get('trips').then((response) => {
-                        commit('setTrips', response);
+                        commit('setTrips', response.data);
                 });
             } catch (error) {
                 console.error(error);
