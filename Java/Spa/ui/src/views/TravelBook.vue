@@ -9,6 +9,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
+              <button class="btn-sm btn-primary" @click="createTrip">Import cest</button>
 
             </ol>
           </div>
@@ -20,11 +21,9 @@
                 <div class="card">
                   <div class="card-header border-0">
                     <div class="row">
-                      <div class="d-flex justify-content-between align-items-center w-100">
-                        <!-- Text na levé straně -->
+                      <div class="d-flex justify-content-between align-items-right w-100">
                         <div>{{ formattedCurrentMonth }}</div>
-                        <!-- Tlačítko na pravé straně -->
-                        <button class="btn btn-primary" @click="createTrip">Vytvořit novou cestu</button>
+                        <button class="btn-sm btn-primary" @click="createTrip">Vytvořit novou cestu</button>
                       </div>
                     </div>
                   </div>
