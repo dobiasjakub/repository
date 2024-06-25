@@ -9,15 +9,15 @@
       <ul class="navbar-nav ml-auto" style="justify-content: center">
 
           <div v-if="currentUser" class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <router-link to="/user" class="nav-link">
-              <font-awesome-icon icon="user" />
-              {{ currentUser?.username }}
-            </router-link>
-          </li>
+            <li class="nav-item">
+              <router-link to="/settings" class="nav-link">
+                <i class="fas fa-cog"></i>
+                Nastavení
+              </router-link>
+            </li>
           <li class="nav-item">
             <a class="nav-link" @click.prevent="logOut">
-              <font-awesome-icon icon="sign-out-alt" /> LogOut
+              <font-awesome-icon icon="sign-out-alt" />  {{ currentUser?.username }}
             </a>
           </li>
         </div>
